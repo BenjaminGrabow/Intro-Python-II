@@ -78,13 +78,11 @@ while True:
     print("Hope to see you see next time!")
     break
 # Print an error message if the movement isn't allowed.
-#CODE HERE
   else:
     if not chooseDirection(user_input):
       print("""You are not able from here to go in this direction!
         "north / west / south / east or end are valid answers !""")
 # If the user enters a cardinal direction, attempt to move to the room there.
-#CODE HERE
     else:
       newPlayer = Player(chooseDirection(user_input))
 

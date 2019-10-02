@@ -38,22 +38,22 @@ room['treasure'].s_to = room['narrow']
 def chooseDirection(direction):
   if direction == "north":
     try:
-      return room[str(newPlayer.currentRoom)].n_to.name.split(" ")[0].lower()
+      return room[newPlayer.currentRoom].n_to.name.split(" ")[0].lower()
     except:
       return False
   elif direction == "south":
     try:
-      return room[str(newPlayer.currentRoom)].s_to.name.split(" ")[0].lower()
+      return room[newPlayer.currentRoom].s_to.name.split(" ")[0].lower()
     except:
       return False
   elif direction == "west":
     try:
-      return room[str(newPlayer.currentRoom)].w_to.name.split(" ")[0].lower()
+      return room[newPlayer.currentRoom].w_to.name.split(" ")[0].lower()
     except:
       return False
   elif direction == "east":
     try:
-      return room[str(newPlayer.currentRoom)].e_to.name.split(" ")[0].lower()
+      return room[newPlayer.currentRoom].e_to.name.split(" ")[0].lower()
     except:
       return False
   else:
@@ -66,7 +66,7 @@ newPlayer = Player('outside')
 while True:
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
-  print(room[str(newPlayer.currentRoom)])
+  print(room[newPlayer.currentRoom])
 # * Waits for user input and decides what to do.
   user_input = input("Choose a direction you want to go! (north / west / south / east)")
 # If the user enters "q", quit the game.

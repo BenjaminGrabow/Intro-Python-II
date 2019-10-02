@@ -3,7 +3,6 @@
 
 class Player:
   def __init__(self, currentRoom):
-    # self.name = name
     self.currentRoom = currentRoom
 
 

@@ -7,5 +7,5 @@ class Room:
     self.description = description
   
   def __str__(self):
-    return f"""You are now in room: {self.name}!
+    return f"""You are currently in room: {self.name}!
     {self.description}"""

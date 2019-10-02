@@ -34,6 +34,28 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+def chooseDirection(direction):
+  if direction == "north":
+    if room[str(newPlayer.currentRoom)].n_to:
+      return room[str(newPlayer.currentRoom)].n_to
+    else:
+      print("You are not able from here to go in this direction!")
+  elif direction == "south":
+    if room[str(newPlayer.currentRoom)].s_to:
+      return room[str(newPlayer.currentRoom)].s_to
+    else:
+      print("You are not able from here to go in this direction!")
+  elif direction == "west":
+    if room[str(newPlayer.currentRoom)].w_to:
+      return room[str(newPlayer.currentRoom)].w_to
+    else:
+      print("You are not able from here to go in this direction!")
+  elif direction == "east":
+    if room[str(newPlayer.currentRoom)].e_to:
+      return room[str(newPlayer.currentRoom)].e_to
+    else:
+      print("You are not able from here to go in this direction!")
+  
 #
 # Main
 #
@@ -47,7 +69,13 @@ newPlayer = Player('outside')
 # * Waits for user input and decides what to do.
 #CODE HERE
 print(room[str(newPlayer.currentRoom)])
+# user_input = input("Choose a direction you want to go! (north / west / south / east)")
+ room[str(newPlayer.currentRoom)].n_to:
+  print(room[str(newPlayer.currentRoom)].n_to)
 # If the user enters a cardinal direction, attempt to move to the room there.
+#CODE HERE
+
 # Print an error message if the movement isn't allowed.
-#
+#CODE HERE
+
 # If the user enters "q", quit the game.

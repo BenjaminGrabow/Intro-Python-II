@@ -34,66 +34,28 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-
-def chooseDirection(direction):
-  if direction == "north":
-    try:
-      return room[newPlayer.currentRoom].n_to.name.split(" ")[0].lower()
-    except:
-      return False
-  elif direction == "south":
-    try:
-      return room[newPlayer.currentRoom].s_to.name.split(" ")[0].lower()
-    except:
-      return False
-  elif direction == "west":
-    try:
-      return room[newPlayer.currentRoom].w_to.name.split(" ")[0].lower()
-    except:
-      return False
-  elif direction == "east":
-    try:
-      return room[newPlayer.currentRoom].e_to.name.split(" ")[0].lower()
-    except:
-      return False
+def movePlayer(direction):
+  attrib = direction[0] + "_to"
+  if hasattr(newPlayer.currentRoom, attrib):
+    return getattr(newPlayer.currentRoom, attrib)
   else:
     return False
 
-def movePlayer(direction):
-  attrib = direction[0] + "_to"
-  #see if room has destination attrib
-  if hasattr(newPlayer.currentRoom, attrib):
-    return getattr(newPlayer.currentRoom, attrib)
-  #otherwise let them know that they can not move in that direction
-  else:
-    print("You can not go in that way")
-
-
-# Make a new player object that is currently in the 'outside' room.
 newPlayer = Player(room['outside'])
 
-# Write a loop that:
 while True:
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
   print(newPlayer.currentRoom)
-# * Waits for user input and decides what to do.
   user_input = input("Choose a direction you want to go! (north / west / south / east)").strip().lower()
-# If the user enters "q", quit the game.
   if user_input == "end":
     print("Hope to see you see next time!")
     break
   elif user_input in [ "north", "west", "south", "east"] :
-    newPlayer.currentRoom = movePlayer(user_input)
+    if not movePlayer(user_input):
+      print("You cant go in this direction from here!")
+    else:
+      newPlayer.currentRoom = movePlayer(user_input)
   else:
-    print("""north / west / south / east or end are valid answers !""")
-
-# Print an error message if the movement isn't allowed.
-#   else:
-#     if not chooseDirection(user_input):
-#       print("""You are not able from here to go in this direction!
-#         north / west / south / east or end are valid answers !""")
-# If the user enters a cardinal direction, attempt to move to the room there.
+    print("north / south / east / west or end are valid answers!")
 
 
 

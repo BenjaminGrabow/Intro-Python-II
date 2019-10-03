@@ -59,6 +59,7 @@ def chooseDirection(direction):
   else:
     return False
 
+
 # Make a new player object that is currently in the 'outside' room.
 newPlayer = Player('outside')
 
@@ -68,7 +69,7 @@ while True:
 # * Prints the current description (the textwrap module might be useful here).
   print(room[newPlayer.currentRoom])
 # * Waits for user input and decides what to do.
-  user_input = input("Choose a direction you want to go! (north / west / south / east)")
+  user_input = input("Choose a direction you want to go! (north / west / south / east)").strip().lower()
 # If the user enters "q", quit the game.
   if user_input == "end":
     print("Hope to see you see next time!")
@@ -83,4 +84,16 @@ while True:
       newPlayer = Player(chooseDirection(user_input))
 
 
+
+
+# def movePlayer(direction, currentRoom):
+#   attrib = direction + "_to"
+
+#   #see if room has destination attrib
+#   if hasattr(currentRoom, attrib):
+#     return getattr(currentRoom, attrib)
+  
+#   #otherwise let them know that they can not move in that direction
+#   else:
+#     print("You can not go in that way")
 

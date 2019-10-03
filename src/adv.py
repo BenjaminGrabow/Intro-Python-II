@@ -47,6 +47,11 @@ newPlayer.inventory.append(Item("Knife", "A rusty knife"))
 newPlayer.inventory.append(Item("WaltherP99", "A powerful weapon"))
 newPlayer.inventory.append(Item("Dog", "A wild fanged hound"))
 
+room['foyer'].items.append(Item("Water", "You can heal yourself 10%"))
+room['overlook'].items.append(Item("Burger", "You can heal yourself 20"))
+room['narrow'].items.append(Item("Silver", "You got money!"))
+room['treasure'].items.append(Item("Gold", "You got rich!"))
+print(room['foyer'].items[0].name)
 while True:
   print()
   print(newPlayer.currentRoom)
@@ -80,14 +85,14 @@ while True:
   elif user_input == "get":
     user_input_get = input("Which item you want to get ? ")
     if user_input_get in [item.name for item in newPlayer.currentRoom.items]: 
-      newPlayer.inventory.append()
+      for item in newPlayer.currentRoom.items:
+        if item.name == user_input_get:
+          my_item = item
+          break
+      newPlayer.inventory.append(my_item)
+      room[newPlayer.currentRoom].items = [item for item in room[newPlayer.currentRoom].items if item.name != user_input_drop]
     else:
       print("This item is not in this room!")
   else:
     print("north / south / east / west or end are valid answers!")
     print()
-
-
-
-
-

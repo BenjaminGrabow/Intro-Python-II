@@ -71,6 +71,18 @@ while True:
       for item in newPlayer.inventory:
         print(f"\t{item}")
         print()
+  elif user_input == "drop":
+    user_input_drop = input("Which item you want to drop ? ")
+    if user_input_drop in [item.name for item in newPlayer.inventory]: 
+      newPlayer.inventory =  [item for item in newPlayer.inventory if item.name != user_input_drop]
+    else:
+      print("You dont have that item!")
+  elif user_input == "get":
+    user_input_get = input("Which item you want to get ? ")
+    if user_input_drop in [item.name for item in newPlayer.inventory]: 
+      newPlayer.inventory =  [item for item in newPlayer.inventory if item.name != user_input_drop]
+    else:
+      print("This item is not in this room!")
   else:
     print("north / south / east / west or end are valid answers!")
     print()

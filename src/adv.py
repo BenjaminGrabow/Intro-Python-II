@@ -42,6 +42,9 @@ def movePlayer(direction):
     return False
 
 newPlayer = Player(room['outside'])
+newPlayer.inventory.append("knife")
+newPlayer.inventory.append("WaltherP99")
+newPlayer.inventory.append("Dog")
 
 while True:
   print(newPlayer.currentRoom)
@@ -54,6 +57,14 @@ while True:
       print("You cant go in this direction from here!")
     else:
       newPlayer.currentRoom = movePlayer(user_input)
+  elif user_input == "inventory":
+    if len(newPlayer.inventory) == 0:
+      print("You have no items !")
+    else:
+      print("You have items!")
+      for item in newPlayer.inventory:
+        print(f"\t{item}")
+      print()
   else:
     print("north / south / east / west or end are valid answers!")
 

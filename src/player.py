@@ -6,7 +6,11 @@ class Player:
     self.currentRoom = currentRoom
     self.inventory = []
   
+  def get(self, item):
+    self.inventory.append(item)
   
+  def drop(self, item):
+    self.inventory.remove(item)
 
 
 

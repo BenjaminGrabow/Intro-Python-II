@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -42,19 +43,23 @@ def movePlayer(direction):
     return False
 
 newPlayer = Player(room['outside'])
-newPlayer.inventory.append("knife")
-newPlayer.inventory.append("WaltherP99")
-newPlayer.inventory.append("Dog")
+newPlayer.inventory.append(Item("Knife", "A rusty knife"))
+newPlayer.inventory.append(Item("WaltherP99", "A powerful weapon"))
+newPlayer.inventory.append(Item("Dog", "A wild fanged hound"))
 
 while True:
+  print()
   print(newPlayer.currentRoom)
+  print()
   user_input = input("Choose a direction you want to go! (north / west / south / east)").strip().lower()
   if user_input == "end":
     print("Hope to see you see next time!")
     break
   elif user_input in [ "north", "west", "south", "east"] :
     if not movePlayer(user_input):
+      print()
       print("You cant go in this direction from here!")
+      print()
     else:
       newPlayer.currentRoom = movePlayer(user_input)
   elif user_input == "inventory":
@@ -62,11 +67,13 @@ while True:
       print("You have no items !")
     else:
       print("You have items!")
+      print()
       for item in newPlayer.inventory:
         print(f"\t{item}")
-      print()
+        print()
   else:
     print("north / south / east / west or end are valid answers!")
+    print()
 
 
 

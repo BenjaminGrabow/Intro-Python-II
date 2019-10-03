@@ -7,4 +7,4 @@ class Item:
     pass
 
   def __str__(self):
-    return self.description
+    return f"{self.name}, {self.description}"

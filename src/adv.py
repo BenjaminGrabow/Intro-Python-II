@@ -79,8 +79,8 @@ while True:
       print("You dont have that item!")
   elif user_input == "get":
     user_input_get = input("Which item you want to get ? ")
-    if user_input_drop in [item.name for item in newPlayer.inventory]: 
-      newPlayer.inventory =  [item for item in newPlayer.inventory if item.name != user_input_drop]
+    if user_input_get in [item.name for item in newPlayer.currentRoom.items]: 
+      newPlayer.inventory.append()
     else:
       print("This item is not in this room!")
   else:

@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -33,19 +35,64 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
+def movePlayer(direction):
+  attrib = direction[0] + "_to"
+  if hasattr(newPlayer.currentRoom, attrib):
+    return getattr(newPlayer.currentRoom, attrib)
+  else:
+    return False
 
-# Make a new player object that is currently in the 'outside' room.
+newPlayer = Player(room['outside'])
+newPlayer.inventory.append(Item("Knife", "A rusty knife"))
+newPlayer.inventory.append(Item("WaltherP99", "A powerful weapon"))
+newPlayer.inventory.append(Item("Dog", "A wild fanged hound"))
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+room['foyer'].items.append(Item("Water", "You can heal yourself 10%"))
+room['overlook'].items.append(Item("Burger", "You can heal yourself 20"))
+room['narrow'].items.append(Item("Silver", "You got money!"))
+room['treasure'].items.append(Item("Gold", "You got rich!"))
+print(room['foyer'].items[0].name)
+while True:
+  print()
+  print(newPlayer.currentRoom)
+  print()
+  user_input = input("Choose a direction you want to go! (north / west / south / east)").strip().lower()
+  if user_input == "end":
+    print("Hope to see you see next time!")
+    break
+  elif user_input in [ "north", "west", "south", "east"] :
+    if not movePlayer(user_input):
+      print()
+      print("You cant go in this direction from here!")
+      print()
+    else:
+      newPlayer.currentRoom = movePlayer(user_input)
+  elif user_input == "inventory":
+    if len(newPlayer.inventory) == 0:
+      print("You have no items !")
+    else:
+      print("You have items!")
+      print()
+      for item in newPlayer.inventory:
+        print(f"\t{item}")
+        print()
+  elif user_input == "drop":
+    user_input_drop = input("Which item you want to drop ? ")
+    if user_input_drop in [item.name for item in newPlayer.inventory]: 
+      newPlayer.inventory =  [item for item in newPlayer.inventory if item.name != user_input_drop]
+    else:
+      print("You dont have that item!")
+  elif user_input == "get":
+    user_input_get = input("Which item you want to get ? ")
+    if user_input_get in [item.name for item in newPlayer.currentRoom.items]: 
+      for item in newPlayer.currentRoom.items:
+        if item.name == user_input_get:
+          my_item = item
+          break
+      newPlayer.inventory.append(my_item)
+      room[newPlayer.currentRoom].items = [item for item in room[newPlayer.currentRoom].items if item.name != user_input_drop]
+    else:
+      print("This item is not in this room!")
+  else:
+    print("north / south / east / west or end are valid answers!")
+    print()
